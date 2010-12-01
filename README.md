@@ -2,15 +2,11 @@
 tracker_cmd is user centric command line tool for pivotal tracker.
 
 ## Configuration
-You'll need to provide you pivotal tracker api token and initials as either a
-global git configuration or as environment variables.
+You'll need to provide you pivotal tracker api token and initials as git configuration.
 
 ### Git Configuration
 
     git config --global pivotal.token <API TOKEN>
     git config --global pivotal.initials <INITIALS>
 
-### Environment variable configuration
-
-    export PIVOTAL_TOKEN=<API TOKEN>
-    export PIVOTAL_INITIALS=<INITIALS>
+Note: Find your api token and intials on your [profile page](https://www.pivotaltracker.com/profile).

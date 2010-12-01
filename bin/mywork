@@ -5,20 +5,30 @@ require 'term/ansicolor'
 include TrackerCmd
 include Term::ANSIColor
 
-Tracker.projects.each do |project|
-  mywork = Tracker.mywork(project['id'], INITIALS)
-  if mywork.any?
-    puts underline(project['name'])
-    mywork.each do |story|
-      # name = red(story['name'])
-      case story['current_state']
-      when 'unstarted'
-        puts "  * #{story['name']} #{red('[Not Yet Started]')}"
-      when 'started'
-        puts "  * #{story['name']} #{green('[Started]')}"
+unless TOKEN.blank? || INITIALS.blank?
+  Tracker.projects.each do |project|
+    mywork = Tracker.mywork(project['id'], INITIALS)
+    if mywork.any?
+      puts underline(project['name'])
+      mywork.select{ |story| story['current_state'] =~ /(unstarted|started)/}.each do |story|
+        case story['current_state']
+        when 'unstarted'
+          puts "  * #{story['name']} #{red('[Not Yet Started]')}"
+        when 'started'
+          puts "  * #{story['name']} #{green('[Started]')}"
+        end
       end
-
-
     end
   end
+else
+  print <<USAGE
+
+We're missing your pivotal tracker api token and/or initials. Set them as follows...
+
+    git config --global pivotal.token <API TOKEN>
+    git config --global pivotal.initials <INITIALS>
+
+Note: Find your api token and intials on your profile page. https://www.pivotaltracker.com/profile
+
+USAGE
 end

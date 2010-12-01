@@ -1,8 +1,10 @@
+
+
 require 'httparty'
 
 module TrackerCmd
-  TOKEN = `git config --global pivotal.token` || `$PIVOTAL_TOKEN`
-  INITIALS = `git config --global pivotal.initials` || `$PIVOTAL_INITIALS`
+  TOKEN = `git config pivotal.token`
+  INITIALS = `git config pivotal.initials`
 
   class Tracker
     include HTTParty
@@ -24,5 +26,3 @@ module TrackerCmd
   end
 
 end
-
-

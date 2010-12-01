@@ -1,3 +1,5 @@
+
+
 # -*- encoding: utf-8 -*-
 require File.expand_path("../lib/tracker_cmd/version", __FILE__)
 
@@ -15,7 +17,9 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "tracker_cmd"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
-  s.add_development_dependency "httparty", ">= 0.6.1"
+
+  s.add_runtime_dependency "httparty", ">= 0.6.1"
+  s.add_runtime_dependency "term-ansicolor", ">= 1.0.5"
 
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
