@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
-require 'tracker'
+require 'tracker_cmd'
 require 'term/ansicolor'
 
 include TrackerCmd
