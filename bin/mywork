@@ -1,0 +1,24 @@
+#! /usr/bin/env ruby
+require 'tracker'
+require 'term/ansicolor'
+
+include TrackerCmd
+include Term::ANSIColor
+
+Tracker.projects.each do |project|
+  mywork = Tracker.mywork(project['id'], INITIALS)
+  if mywork.any?
+    puts underline(project['name'])
+    mywork.each do |story|
+      # name = red(story['name'])
+      case story['current_state']
+      when 'unstarted'
+        puts "  * #{story['name']} #{red('[Not Yet Started]')}"
+      when 'started'
+        puts "  * #{story['name']} #{green('[Started]')}"
+      end
+
+
+    end
+  end
+end
